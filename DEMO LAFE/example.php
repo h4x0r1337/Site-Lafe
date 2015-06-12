@@ -8,6 +8,7 @@
 require_once(dirname(__FILE__).'/sci/config.php');
 require_once(dirname(__FILE__).'/lib/common.lib.php');
 
+
 if (!empty($_POST['coin_amount'])) {
 
   $coin_amount = $_POST['coin_amount'];

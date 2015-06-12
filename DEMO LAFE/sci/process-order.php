@@ -2,6 +2,7 @@
 require_once(dirname(__FILE__).'/config.php');
 require_once(dirname(__FILE__).'/../lib/common.lib.php');
 
+
 // generate random tran code string
 $t_code = bitcoin::randomString(26);
 
