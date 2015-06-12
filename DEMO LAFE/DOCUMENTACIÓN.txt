@@ -1,1 +1,1 @@
-Descripción: En esta carpeta se encuentran todos los archivos básicos, sin modificación, con respecto al procesamiento de pagos.
+Descripción (12/06/2015): En esta carpeta se encuentran todos los archivos básicos, sin modificación, con respecto al procesamiento de pagos.
