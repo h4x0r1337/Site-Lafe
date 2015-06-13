@@ -506,10 +506,53 @@ $importe_btc = $_GET['importebtc'];
   <script src="js/js2/app.plugin.js"></script>
 
 
+           
+
+
 
 <script language="JavaScript"> 
-                                                                                                                          
- $(document).ready(function() {                                                                                                                   $('#qrcode').qrcode('bitcoin:15Y3RLa6ytdVXFUCawMzJK4eWd9KbfvGEK?amount=123.00000000');
-                                                    });                                                                          
 
-                                                                                                                         </script></body></html>
+var balance = 0 ;
+var respuesta = 0;
+var empieza = "";
+                                                                                                                          
+$(document).ready(function() {      
+
+ $('#qrcode').qrcode('<?php echo 'bitcoin:'.$address.'?amount='.$importe_btc; ?>');
+
+empieza =  setInterval(function () {verBalance()}, 5000);
+
+
+
+});     
+
+
+//FUNCIONES
+function verBalance()
+{
+  
+    $.getJSON( "https://blockchain.info/q/addressbalance/<?php echo $address; ?>?confirmations=0", function(data){ //preguntamos el balance que tiene la address generada
+
+       balance = data;
+        console.log(balance);
+      // alert("balance es: " + balance);
+
+    });    //cierra getjson
+  
+
+
+   if ( balance !== 0 ){
+      clearInterval(empieza);
+       window.location.assign("dashboard.html");
+      
+       }
+                 
+ } //cierra verBalance
+
+
+
+
+                                             
+
+</script>
+</body></html>

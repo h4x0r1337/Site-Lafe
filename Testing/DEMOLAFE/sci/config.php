@@ -36,7 +36,7 @@ $admin_pass = 'wolframalphacon7';
 $sec_str = 'wolframalphacon7';
 
 // public RSA key used to encrypt private keys
-$pub_rsa_key = '6fa29fe8338723157c27573aba2dfd8a275ea505bde3cee16883cdf762050c95b364915a8f170ee80b2b200c2acc3bfac65a1531598cd998dd98ba340493bc3d19ba2dcbfb84abf299d48d95fb9790742e603d8f8c8b5dea17fef34f4bad0cd49d61607a0a5533518757fd10577eea2b87a927c3346cea96fa3ec7718499b26b';
+$pub_rsa_key = '66a1e97521e657128c81abdc612f35478adb6c9c62355c8196e06830981e85fb2efc9679c806af818fca1d6d7bfc646d232f8184140f1d129533ae5727117a713782cb5472588aa30be0201a731e2caab5b61291e9333d736fdfb5d93dc420177a6685cd54242ea2981b130b4177849b23108a5879943755e453cd5d52984153';
 
 /////////////////////////////////////
 /* IGNORE ANYTHING UNDER THIS LINE */
