@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ 
+   <script src="jquery.min.js"></script>
+   <script language="JavaScript" type="text/javascript" src="../scripts/jquery-1.9.1.min.js" ></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/general.lib.js" ></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/base64.lib.js" ></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/rsa/prng4.js"></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/rsa/rng.js"></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/rsa/rsa.js"></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/rsa/rsa2.js"></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/rsa/base64.js"></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/rsa/jsbn.js"></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/rsa/jsbn2.js"></script>
+
+</head>
+<body>
+
+<p id = "claves"> Aca Claves </p>
+</body>
+
+</html>
+
+
+<script type = 'text/javascript'>
+
+
+var pub_rsa_key = "ab05e47f381612ef36576c81dfeded7a05a7276e7e1ecee4a8c93d5713d2fa28ebc288a5ec5030b0dcdb572f403401a90ed4f20349e6c8fb491ae6864ab6a2a7aeed6a47d2116f8309c57a882446d8ee49a727b4a6ba00ef1a527b94a641b22caa0a5022439a659e838a014e854a47e4b7c5ad6e721b344d19e669ba31077e21";
+
+var pk ="9a61bf5a782eb4f8eb7d0f9e4d9e61f8fc915faf067a991920a448930a7a31082f8a740013ca6fa9b834e806e7560b09a931e125c6d866253060f027d9d9f4091d080b3b70120e6ed4fbd95ebc0aa2b12fc9f881ea4cf326728008aafda4656f06d84353493cfceafa65eea80d5272d03cc3c8b3edec57b158cfcca9390f9801:f0c8300c2128bf25965f9c0d8723bfb6df4dac8a7315eafc3e67bfefa4648eaccc60e45def27a49725ecc4087ba76b4b5135167437c6a84f713b5b519af2dc91:b5d50436cbadf2dcc2cccba2b66fda203ec9549e43803b877319a948b03cbd80053bb509af4003147d25b2ea0a5a32aeba265bad96eea44d7c5a2a3caa779091:65a31b25039a3f958e342d9b48403edce2c5d6df5a55162c03eba78970cb41ae8f57170ecfb4dc35313d1042c46f974ae3ac951dd9ad71be96fd873e9b398901:5049d0e4892733d7bac4471e7fc3ffe2c116912098d9a46f78a95a10589159738fdbff625959c08269881dea2dcc0a1910e5231211552a83746733c339da35a1:8a0c160f06cf2ac7cca924d6da3d77f768f866f77c220f84b8fb497c3de0b125086b0486186268565ddf1762b6c3644d97770c74c14a3b257c6e0678f300967f" ;
+
+
+var fina = "" ;
+          var extra = "";
+ $.getJSON('claves.json' , function(data){
+
+               
+               fina = data;
+
+         var arr = fina.split(",");
+
+for(var i = 0 ;  i<((arr.length)) ; i++)
+{
+  
+   arr[i] = do_decrypt(pk,arr[i]);
+   extra = extra + arr[i] +"\n"  ;
+
+}
+document.getElementById('claves').innerHTML =  extra;
+ });
+
+
+
+function do_decrypt(pk, ct) {  
+
+	var rsa = new RSAKey();
+	var pub_dat = pub_rsa_key ;
+	var pri_dat = pk.split(':');
+
+	var n = pub_dat;
+	var d = pri_dat[0];
+	var p = pri_dat[1];
+	var q = pri_dat[2];
+	var dp = pri_dat[3];
+	var dq = pri_dat[4];
+	var c = pri_dat[5];
+
+	rsa.setPrivateEx(n, '10001', d, p, q, dp, dq, c);
+
+	var res = rsa.decrypt(ct);
+
+	if (res == null) {
+		return "*** Invalid Ciphertext ***";
+	} else {
+		return res;
+	}
+}
+
+
+
+
+
+
+</script>

@@ -13,6 +13,8 @@
 require_once(dirname(__FILE__).'/ecc-lib/auto_load.php');
 require_once(dirname(__FILE__).'/Crypt/Random.php');
 
+
+
 if (!extension_loaded('bcmath')) {
   die("ERROR: BC Math is not installed!");
 }
@@ -293,8 +295,10 @@ class bitcoin {
 * @return string
 * @access public
 */
+
+  
   public static function privKeyToPubKey($privKey) {
-	  
+
     $g = SECcurve::generator_secp256k1();
     
 	$privKey = self::decodeHex($privKey);  
@@ -359,8 +363,8 @@ class bitcoin {
 */
   public static function getNewKeyPair() {
   
-	$privKey = self::getNewPrivKey(); 
-	$pubKey = self::privKeyToPubKey($privKey);
+	 $privKey = self::getNewPrivKey(); 
+ 	$pubKey = self::privKeyToPubKey($privKey);
 	
 	return array(
 	  'privKey' => $privKey,
@@ -535,6 +539,8 @@ class bitcoin {
 * @access public
 */
   public static function privKeyToCompWIF($privKey) {
+
+
     return self::hash160ToAddress($privKey, self::get_privkey_version(), true);
   }
 

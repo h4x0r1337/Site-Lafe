@@ -66,7 +66,7 @@ body {
 <script language="JavaScript">
 var e_num = 0;
 
-function do_decrypt(pk, ciphertext) {
+function do_decrypt(pk, ciphertext) {   //pk es el codigo para desencriptar. Ciphertext es la llave privada encriptada.
 
 	var rsa = new RSAKey();
 	var pub_dat = '<?php echo $pub_rsa_key; ?>';
@@ -94,7 +94,7 @@ function do_decrypt(pk, ciphertext) {
 function decrypt_key(key_str, en) {
 	var pk_div = document.getElementById('priv_key'+en);
 	priv_key = prompt('Private Key:', '');
-	pk_div.innerHTML = do_decrypt(priv_key, key_str);
+	pk_div.innerHTML = do_decrypt(priv_key, key_str); //priv_key es el codigo para desencriptar y  key_str es la llave privada encriptada.
 }
 
 function gen_keys() {
@@ -164,8 +164,8 @@ if (!empty($_SESSION['admin_valid']) && ($_SESSION['admin_valid'] === true)) {
         for ($i=0;$i<$num_keys;$i++) {
           $key_data = explode(':', $wif_keys[$i]);
 	      if (count($key_data) == 2) {
-	        $key_data[0] = trim($key_data[0]);
-	        $key_data[1] = trim($key_data[1]);
+	        $key_data[0] = trim($key_data[0]);  //key_data[0] es lo de adelante de :
+	        $key_data[1] = trim($key_data[1]);  //key_data[1] es lo de atras de :
 ?>
 
   <div class='key_con'>
